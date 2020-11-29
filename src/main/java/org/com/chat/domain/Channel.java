@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Data
 @NoArgsConstructor
@@ -20,5 +21,18 @@ public class Channel {
 
     @Column(name = "display_name", nullable = false, unique = false, length = 100)
     private String displayName;
+
+    @OneToOne(mappedBy = "channel")
+    private ChannelDetails channelDetails;
+
+    @OneToMany(mappedBy = "channel")
+    private Collection<Messages> messages;
+
+    @ManyToMany
+    @JoinTable(name = "user_channels",
+                joinColumns = @JoinColumn(name = "channel_id"),
+                inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private Collection<User> users;
+
 
 }
