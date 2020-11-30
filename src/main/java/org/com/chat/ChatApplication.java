@@ -2,9 +2,11 @@ package org.com.chat;
 
 import org.com.chat.dao.ChannelDao;
 import org.com.chat.dao.ChannelDetailsDao;
+import org.com.chat.dao.MessageDao;
 import org.com.chat.dao.UserDao;
 import org.com.chat.dao.impl.HibernateChannelDao;
 import org.com.chat.dao.impl.HibernateChannelDetailsDao;
+import org.com.chat.dao.impl.HibernateMessageDao;
 import org.com.chat.dao.impl.HibernateUserDao;
 import org.com.chat.domain.Channel;
 import org.com.chat.domain.User;
@@ -47,19 +49,45 @@ public class ChatApplication {
 //        Channel channel = channelDao.findChannelById(id);
 //        System.out.println(channel);
 
+
+//create User
 //        UserDao userDao = new HibernateUserDao();
+//        User user = userDao.createUser("log", "one", "two");
+//        System.out.println(user);
+
+
 //remove User By Id
+//        UserDao userDao = new HibernateUserDao();
 //        User user = userDao.removeUser(Integer.parseInt(reader.readLine()));
 //        System.out.println(user);
 
 //append details
-        ChannelDetailsDao channelDetailsDao = new HibernateChannelDetailsDao();
-        Integer a = Integer.parseInt(reader.readLine());
-        Integer b = Integer.parseInt(reader.readLine());
-        String c = reader.readLine();
+//        ChannelDetailsDao channelDetailsDao = new HibernateChannelDetailsDao();
+//        Integer a = Integer.parseInt(reader.readLine());
+//        Integer b = Integer.parseInt(reader.readLine());
+//        String c = reader.readLine();
+//
+//        channelDetailsDao.appendDetails(a, b, c);
 
-        channelDetailsDao.appendDetails(a, b, c);
-
+//send Message
+//        System.out.println("Enter channel ID:");
+//        int channelId = Integer.parseInt(reader.readLine());
+//
+//        System.out.println("Enter user ID:");
+//        int userId = Integer.parseInt(reader.readLine());
+//
+//        Channel channel = new Channel();
+//        channel.setId(channelId);
+//
+//        User user = new User();
+//        user.setId(userId);
+//
+//        MessageDao messageDao = new HibernateMessageDao();
+//
+//        System.out.println("Enter message text:");
+//        String text = reader.readLine();
+//
+//        messageDao.sendMessage(user, channel, text);
         
 
 
