@@ -12,16 +12,24 @@ import org.com.chat.domain.Channel;
 import org.com.chat.domain.User;
 import org.com.chat.hibernate.HibernateUtils;
 import org.hibernate.Hibernate;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Collection;
 
+@SpringBootApplication
 public class ChatApplication {
     public static void main(String[] args) throws IOException {
+        SpringApplication.run(ChatApplication.class, args);
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("hi, you did");
+
+
+
+//        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
 
 //        ChannelDao channelDao = new HibernateChannelDao();
@@ -92,7 +100,7 @@ public class ChatApplication {
 
 
 
-        HibernateUtils.getFactory().close();
+//        HibernateUtils.getFactory().close();
 
     }
 
