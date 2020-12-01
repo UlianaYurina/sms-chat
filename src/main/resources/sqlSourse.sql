@@ -117,3 +117,10 @@ order by count(m.text) desc;
 
 --change column constraint
 alter table messages alter column text drop not null;
+
+
+create table user_password (
+	user_id Integer primary key,
+	user_password text not null,
+	foreign key(user_id) references users(id)
+);

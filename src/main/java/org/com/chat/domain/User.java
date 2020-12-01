@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Data
 @Entity
@@ -24,12 +25,16 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
+    @ManyToMany(mappedBy = "users")
+    private Collection<Channel> channel;
 
-    public User(String login, String firstName, String lastName) {
-        this.login = login;
-        this.firstName = firstName;
-        this.lastName = lastName;
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
-
-
 }

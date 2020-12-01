@@ -1,35 +1,45 @@
 package org.com.chat;
 
+
 import org.com.chat.dao.ChannelDao;
-import org.com.chat.dao.ChannelDetailsDao;
-import org.com.chat.dao.MessageDao;
 import org.com.chat.dao.UserDao;
 import org.com.chat.dao.impl.HibernateChannelDao;
-import org.com.chat.dao.impl.HibernateChannelDetailsDao;
-import org.com.chat.dao.impl.HibernateMessageDao;
 import org.com.chat.dao.impl.HibernateUserDao;
 import org.com.chat.domain.Channel;
 import org.com.chat.domain.User;
 import org.com.chat.hibernate.HibernateUtils;
-import org.hibernate.Hibernate;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.com.chat.service.RegistrationService;
+import org.com.chat.service.RegistrationServiceImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Collection;
+import java.util.List;
 
-@SpringBootApplication
+
 public class ChatApplication {
     public static void main(String[] args) throws IOException {
-        SpringApplication.run(ChatApplication.class, args);
 
-        System.out.println("hi, you did");
-
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
 
-//        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+//select channel by user
+//        ChannelDao channelDao = new HibernateChannelDao();
+//        Collection<Channel> list = channelDao.findChannelByUserId(1);
+//        for (Channel c : list) {
+//            System.out.println(c.getDisplayName());
+//        }
+
+
+//        RegistrationService registrationService = new RegistrationServiceImpl();
+//        User user = registrationService.registrationUser();
+//        Channel channel = new Channel();
+//        channel.getUsers();
+//        System.out.println(channel);
+
+
 
 
 //        ChannelDao channelDao = new HibernateChannelDao();
@@ -60,7 +70,8 @@ public class ChatApplication {
 
 //create User
 //        UserDao userDao = new HibernateUserDao();
-//        User user = userDao.createUser("log", "one", "two");
+//        String login = reader.readLine();
+//        User user = userDao.createUser(login, "one1", "two1", "11111");
 //        System.out.println(user);
 
 
@@ -100,7 +111,7 @@ public class ChatApplication {
 
 
 
-//        HibernateUtils.getFactory().close();
+        HibernateUtils.getFactory().close();
 
     }
 

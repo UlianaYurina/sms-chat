@@ -3,6 +3,7 @@ package org.com.chat.dao.impl;
 import org.com.chat.dao.UserDao;
 import org.com.chat.domain.Channel;
 import org.com.chat.domain.User;
+import org.com.chat.domain.UserPassword;
 import org.com.chat.hibernate.HibernateUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,22 +23,30 @@ public class HibernateUserDao implements UserDao {
 
 
     @Override
-    public User createUser(String login, String firstName, String lastName) {
-        Session session = factory.openSession();
-        Transaction transaction = session.beginTransaction();
+    public User createUser(String login, String firstName, String lastName, String password) {
 
-        User user = new User();
+        try (Session session = factory.openSession()){
+            Transaction transaction = session.beginTransaction();
+            User user = new User();
+            UserPassword userPassword = new UserPassword();
 
-        user.setLogin(login);
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
+            user.setLogin(login);
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            session.persist(user);
 
-        session.persist(user);
-        transaction.commit();
-        session.close();
+            userPassword.setUserId(user.getId());
+            userPassword.setUserPassword(password);
+            session.persist(userPassword);
 
-        return user;
+
+
+            transaction.commit();
+            return user;
+
+        }
     }
+
 
     @Override
     public Collection<User> findAllUsers() {
@@ -72,5 +81,17 @@ public class HibernateUserDao implements UserDao {
         }
 
         return null;
+    }
+
+    @Override
+    public UserPassword findPassword(Integer userId) {
+        try (Session session = factory.openSession()) {
+            List<UserPassword> userPassword = session
+                    .createQuery("from UserPassword where userId = :id", UserPassword.class)
+                    .setParameter("id", userId)
+                    .getResultList();
+            return userPassword.isEmpty() ? null : userPassword.get(0);
+        }
+
     }
 }

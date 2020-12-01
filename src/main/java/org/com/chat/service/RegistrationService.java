@@ -1,5 +1,9 @@
 package org.com.chat.service;
 
-public class RegistrationService {
+import org.com.chat.domain.User;
 
+import java.io.IOException;
+
+public interface RegistrationService {
+    User registrationUser() throws IOException;
 }

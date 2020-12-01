@@ -21,6 +21,7 @@
         <mapping class="org.com.chat.domain.User" />
         <mapping class="org.com.chat.domain.ChannelDetails" />
         <mapping class="org.com.chat.domain.Messages" />
+        <mapping class="org.com.chat.domain.UserPassword" />
 
 
     </session-factory>
