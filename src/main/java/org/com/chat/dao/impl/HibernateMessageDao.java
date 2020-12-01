@@ -10,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import java.util.Date;
+import java.util.List;
 
 
 public class HibernateMessageDao implements MessageDao {
@@ -39,5 +40,23 @@ public class HibernateMessageDao implements MessageDao {
             return messages;
         }
 
+    }
+
+    @Override
+    public List<Messages> showMessages(Channel channel) {
+
+        try (Session session = factory.openSession()) {
+            List<Messages> messages = session
+                    .createQuery("from Messages m where m.channel.id = :channel_id", Messages.class)
+                    .setParameter("channel_id", channel.getId())
+                    .getResultList();
+
+//            List<Messages> messages = session
+//                    .createQuery("from Messages m where m.channel.id = :channel_id and m.user.id =: user_id", Messages.class)
+//                    .setParameter("channel_id", channel_id)
+//                    .setParameter("user_id", user_id)
+//                    .getResultList();
+            return messages;
+        }
     }
 }

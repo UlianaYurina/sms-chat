@@ -2,14 +2,19 @@ package org.com.chat;
 
 
 import org.com.chat.dao.ChannelDao;
+import org.com.chat.dao.MessageDao;
 import org.com.chat.dao.UserDao;
 import org.com.chat.dao.impl.HibernateChannelDao;
+import org.com.chat.dao.impl.HibernateMessageDao;
 import org.com.chat.dao.impl.HibernateUserDao;
 import org.com.chat.domain.Channel;
+import org.com.chat.domain.Messages;
 import org.com.chat.domain.User;
 import org.com.chat.hibernate.HibernateUtils;
 import org.com.chat.service.RegistrationService;
 import org.com.chat.service.RegistrationServiceImpl;
+import org.com.chat.service.SendMessageService;
+import org.com.chat.service.SendMessageServiceImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,11 +28,20 @@ public class ChatApplication {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
+//        SendMessageService sendMessageService = new SendMessageServiceImpl();
+//        sendMessageService.getChannels(2);
+//show dialog
+//        MessageDao messageDao = new HibernateMessageDao();
+//        List<Messages> messages = messageDao.showMessages(2);
+//        for (Messages m : messages) {
+//            System.out.println(m.getText() + " " + m.getUser().getId());
+//        }
+
 
 
 //select channel by user
 //        ChannelDao channelDao = new HibernateChannelDao();
-//        Collection<Channel> list = channelDao.findChannelByUserId(1);
+//        Collection<Channel> list = channelDao.findChannelByUserId(2);
 //        for (Channel c : list) {
 //            System.out.println(c.getDisplayName());
 //        }

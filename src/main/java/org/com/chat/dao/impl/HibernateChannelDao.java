@@ -88,11 +88,11 @@ public class HibernateChannelDao implements ChannelDao {
     }
 
     @Override
-    public Collection<Channel> findChannelByUserId(Integer id) {
+    public Collection<Channel> findChannelByUserId(Integer user_id) {
         try (Session session = factory.openSession()) {
             User user = session
                     .createQuery("from User  where id = :id", User.class)
-                    .setParameter("id", id)
+                    .setParameter("id", user_id)
                     .getSingleResult();
 
             List<Channel> channels = session
