@@ -30,8 +30,13 @@ public class SendMessageServiceImpl implements SendMessageService {
 
         Channel channel;
         while (true) {
-            System.out.println("Enter number of channel:");
+            System.out.println("Enter number of channel or enter \"exit\"");
             String channelId = reader.readLine();
+            if (channelId.equals("exit")) {
+                RegistrationService registrationService = new RegistrationServiceImpl();
+                registrationService.registrationUser();
+                return null;
+            }
             for (Channel c : channels) {
                 if (c.getId().equals(Integer.parseInt(channelId))) {
                     channel = c;
@@ -44,8 +49,7 @@ public class SendMessageServiceImpl implements SendMessageService {
     }
 
     @Override
-    public Messages showMessages(Channel channel) {
-
+    public Messages sendMessage(User user, Channel channel ) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         MessageDao messageDao = new HibernateMessageDao();
@@ -53,6 +57,15 @@ public class SendMessageServiceImpl implements SendMessageService {
         for (Messages m : messages) {
             System.out.println(m.getUser().getFirstName() + "  -  " + m.getText());
         }
+        System.out.println("Enter text or enter \"exit\"");
+        String text = reader.readLine();
+        while (!text.equals("exit")) {
+            Messages message = messageDao.sendMessage(user, channel, text);
+            System.out.println(message.getUser().getFirstName() + "  -  " + message.getText());
+            System.out.println("Enter text or enter \"exit\"");
+            text = reader.readLine();
+        }
+        getChannels(user);
 
         return null;
     }

@@ -11,10 +11,7 @@ import org.com.chat.domain.Channel;
 import org.com.chat.domain.Messages;
 import org.com.chat.domain.User;
 import org.com.chat.hibernate.HibernateUtils;
-import org.com.chat.service.RegistrationService;
-import org.com.chat.service.RegistrationServiceImpl;
-import org.com.chat.service.SendMessageService;
-import org.com.chat.service.SendMessageServiceImpl;
+import org.com.chat.service.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,7 +23,20 @@ import java.util.List;
 public class ChatApplication {
     public static void main(String[] args) throws IOException {
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        NewUserService newUserService = new NewUserServiceImpl();
+        RegistrationService registrationService = new RegistrationServiceImpl();
+        SendMessageService sendMessageService = new SendMessageServiceImpl();
+
+        System.out.println("Hi! Welcome to my chat!");
+
+        User user = registrationService.registrationUser();
+
+        Channel channel = sendMessageService.getChannels(user);
+
+        sendMessageService.sendMessage(user, channel);
+
+
+//        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
 //        SendMessageService sendMessageService = new SendMessageServiceImpl();
 //        sendMessageService.getChannels(2);
@@ -66,9 +76,9 @@ public class ChatApplication {
 //        System.out.println(channel);
 //
 // show all channel
-//        Collection<Channel> allChannel = channelDao.findAll();
+//        Collection<Channel> allChannel = channelDao.findAllChannels();
 //        for (Channel ch : allChannel) {
-//            System.out.println(ch);
+//            System.out.println(ch.getDisplayName());
 //        }
 
 //find by channelName
@@ -122,8 +132,6 @@ public class ChatApplication {
 //
 //        messageDao.sendMessage(user, channel, text);
         
-
-
 
         HibernateUtils.getFactory().close();
 

@@ -1,7 +1,6 @@
 package org.com.chat.dao.impl;
 
 import org.com.chat.dao.UserDao;
-import org.com.chat.domain.Channel;
 import org.com.chat.domain.User;
 import org.com.chat.domain.UserPassword;
 import org.com.chat.hibernate.HibernateUtils;
@@ -39,14 +38,11 @@ public class HibernateUserDao implements UserDao {
             userPassword.setUserPassword(password);
             session.persist(userPassword);
 
-
-
             transaction.commit();
             return user;
 
         }
     }
-
 
     @Override
     public Collection<User> findAllUsers() {

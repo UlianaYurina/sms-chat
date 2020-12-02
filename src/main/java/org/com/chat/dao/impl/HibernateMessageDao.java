@@ -51,11 +51,6 @@ public class HibernateMessageDao implements MessageDao {
                     .setParameter("channel_id", channel.getId())
                     .getResultList();
 
-//            List<Messages> messages = session
-//                    .createQuery("from Messages m where m.channel.id = :channel_id and m.user.id =: user_id", Messages.class)
-//                    .setParameter("channel_id", channel_id)
-//                    .setParameter("user_id", user_id)
-//                    .getResultList();
             return messages;
         }
     }

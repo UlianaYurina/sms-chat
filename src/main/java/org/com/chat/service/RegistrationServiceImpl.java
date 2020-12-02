@@ -24,27 +24,15 @@ public class RegistrationServiceImpl implements RegistrationService {
         User user = userDao.findUserByLogin(login);
 
         if (user == null) {
-            while (user == null) {
-                System.out.println("User is not exist. Do you want to create a new user? Enter y");
-                if (reader.readLine().equals("y")) {
+            System.out.println("User is not exist. Do you want to create a new user? Enter y");
+            if (reader.readLine().equals("y")) {
 
-                    System.out.println("Enter login:");
-                    String loginNew = reader.readLine();
+                NewUserService newUserService = new NewUserServiceImpl();
 
-                    System.out.println("Enter first name:");
-                    String firstName = reader.readLine();
+                user = newUserService.newUser(login);
 
-                    System.out.println("Enter last name:");
-                    String lastName = reader.readLine();
-
-                    System.out.println("Enter password:");
-                    String password = reader.readLine();
-
-                    user = userDao.createUser(loginNew, firstName, lastName, password);
-                    return user;
-                } else
-                    return null;
-            }
+            } else
+                return null;
         }
 
         System.out.println("Enter your password: ");
@@ -62,6 +50,7 @@ public class RegistrationServiceImpl implements RegistrationService {
                     return null;
             }
         }
+
         return user;
 
    }
